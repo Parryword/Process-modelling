@@ -36,7 +36,7 @@ class Ethernet {
 
 
 class TokenRing {
-    private int[] memory = new int[100];
+    private int[] memory = new int[10];
 
     public int[] receive(int size) {
         int [] data = new int[size];
@@ -47,8 +47,13 @@ class TokenRing {
     }
 
     public int send(int[] data, int size) {
-        for (int i = 0; i < size; i++) {
-            memory[i] = data[i];
+        try {
+            for (int i = 0; i < size; i++) {
+                memory[i] = data[i];
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return 1;
         }
         return 0;
     }
@@ -79,8 +84,8 @@ class TokenRingAdapter implements Card {
         for (int i = 0; i < size; i++) {
             convertedData[i] = data[i];
         }
-        tokenRing.send(convertedData, size);
-        return 0;
+        int errCode = tokenRing.send(convertedData, size);
+        return errCode;
     }
 }
 
@@ -108,7 +113,7 @@ class EthernetAdapter implements Card {
         for (int i = 0; i < size; i++) {
             convertedData[i] = data[i];
         }
-        ethernet.write(convertedData);
-        return 0;
+        int errCode = ethernet.write(convertedData);
+        return errCode;
     }
 }

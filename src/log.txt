@@ -1,1 +1,0 @@
-29-04-2023 01:39:28 Process{commands=[ReadCard{cache=[-52, -75, -92, 22, 34, -113, 29, -85, 35, -4], card=EthernetAdapter@1b5692a7, size=10}, WriteMemory{cache=[-52, -75, -92, 22, 34, -113, 29, -85, 35, -4], ram=RAM@7fdfe329, address=0}, WriteCard{cache=[-52, -75, -92, 22, 34, -113, 29, -85, 35, -4], card=TokenRingAdapter@5117ca2c}]}

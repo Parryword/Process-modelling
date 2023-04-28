@@ -21,12 +21,12 @@
 // Error codes
 public class Main {
     public static void main(String[] args) {
-        Byte[] preGeneratedData = Utility.generateByteData(100);
+        Byte[] preGeneratedData = Utility.generateByteData(1000);
         CPU cpu = new CPU();
         RAM ram = new RAM();
         Ethernet et = new Ethernet(preGeneratedData);
         TokenRing tr = new TokenRing();
-        Command c1 = new ReadCard(new EthernetAdapter(et), 10);
+        Command c1 = new ReadCard(new EthernetAdapter(et), 11);
         Command c2 = new WriteMemory(ram,0);
         Command c3 = new WriteCard(new TokenRingAdapter(tr));
         Process p1 = new Process(c1, c2, c3);

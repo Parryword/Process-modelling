@@ -91,6 +91,7 @@ class ReadMemory extends Task {
 class WriteMemory extends Task {
     private RAM ram;
     private int address;
+    private int errCode;
 
     public WriteMemory(RAM ram, int address) {
         this.ram = ram;
@@ -100,7 +101,7 @@ class WriteMemory extends Task {
     @Override
     public void execute() {
         cache = getData();
-        ram.set(cache, address);
+        errCode = ram.set(cache, address);
     }
 
     @Override
@@ -109,6 +110,7 @@ class WriteMemory extends Task {
                 "cache=" + Arrays.toString(cache) +
                 ", ram=" + ram +
                 ", address=" + address +
+                ", errCode=" + errCode +
                 '}';
     }
 }
@@ -140,6 +142,7 @@ class ReadCard extends Task {
 
 class WriteCard extends Task {
     private Card card;
+    private int errCode;
 
     public WriteCard(Card card) {
         this.card = card;
@@ -148,7 +151,7 @@ class WriteCard extends Task {
     @Override
     public void execute() {
         cache = getData();
-        card.setCom(cache);
+        errCode = card.setCom(cache);
     }
 
     @Override
@@ -156,6 +159,7 @@ class WriteCard extends Task {
         return "WriteCard{" +
                 "cache=" + Arrays.toString(cache) +
                 ", card=" + card +
+                ", errCode=" + errCode +
                 '}';
     }
 }

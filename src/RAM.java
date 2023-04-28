@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class RAM {
-    private byte[] memory = new byte[1000];
+    private byte[] memory = new byte[100];
 
     public RAM() {
 
@@ -16,9 +16,14 @@ public class RAM {
     }
 
     public int set(byte[] data, int address) {
-        for (int i = 0; i < data.length; i++) {
-            memory[address + i] = data[i];
+        try {
+            for (int i = 0; i < data.length; i++) {
+                memory[address + i] = data[i];
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return 1;
         }
-        return -1;
+        return 0;
     }
 }
