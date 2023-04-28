@@ -117,8 +117,8 @@ class ReadCard extends Task {
     private Card card;
     private int size;
 
-    public ReadCard (IEthernet ethernetCard, int size) {
-        this.card = new Card(ethernetCard);
+    public ReadCard (Card card, int size) {
+        this.card = card;
         this.size = size;
     }
 
@@ -141,8 +141,8 @@ class ReadCard extends Task {
 class WriteCard extends Task {
     private Card card;
 
-    public WriteCard(IEthernet ethernetCard) {
-        this.card = new Card(ethernetCard);
+    public WriteCard(Card card) {
+        this.card = card;
     }
 
     @Override

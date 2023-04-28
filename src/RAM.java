@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class RAM {
-    private byte[] memory = new byte[100];
+    private byte[] memory = new byte[1000];
 
     public RAM() {
 
