@@ -1,8 +1,6 @@
 import java.util.Random;
 
 public class RAM {
-    // 100 bytes of memory (between -128 and 127)
-    // Index of the array is the memory location
     private byte[] memory = new byte[100];
 
     public RAM() {

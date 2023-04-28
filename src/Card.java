@@ -52,6 +52,7 @@ class TokenRing implements ITokenRing {
     }
 }
 
+/**Adapter is used to enable a TokenRing given as a receiver to a task. It is not possible to give a TokenRing as a parameter to a task.*/
 class EthernetToTokenRingAdapter implements IEthernet {
     private TokenRing tokenRing;
 
