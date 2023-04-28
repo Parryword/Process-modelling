@@ -1,0 +1,159 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+/**Command class is used to reference a process or task.*/
+public interface Command {
+    void execute();
+}
+
+/**Process class stores a group of tasks, which it runs in order.*/
+class Process implements Command {
+    ArrayList<Command> commands;
+
+    public Process(Command... command) {
+        commands = new ArrayList<>();
+        Collections.addAll(commands, command);
+    }
+
+    @Override
+    public void execute() {
+        for (Command c:commands
+             ) {
+            c.execute();
+            System.out.println("Sub-command executed.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Process{" +
+                "commands=" + commands +
+                '}';
+    }
+}
+
+/**Task class is a general abstraction of all tasks that is implemented. Its main function is to store last read data in a static format so that every task can access it.*/
+abstract class Task implements Command {
+    static protected byte[] data; // Contains the last data transferred
+    protected byte[] cache; // Not strictly necessary, only used to log what data has been transferred
+
+    /**Updates the common data of all tasks.*/
+    protected void setData(byte[] data) {
+
+        this.data = data;
+    }
+
+    /**Returns the common data of all tasks.*/
+    protected byte[] getData() {
+
+        return data;
+    }
+
+    /**Sets data of the tasks to null. It is not used in the project.*/
+    @Deprecated
+    protected void flushData() {
+        data = null;
+    }
+}
+
+class ReadMemory extends Task {
+    private RAM ram;
+    private int address;
+    private int size;
+
+
+    public ReadMemory(RAM ram, int address, int size) {
+        this.ram = ram;
+        this.address = address;
+        this.size = size;
+    }
+
+    @Override
+    public void execute() {
+        cache = ram.get(address, size);
+        setData(cache);
+    }
+
+    @Override
+    public String toString() {
+        return "ReadMemory{" +
+                "cache=" + Arrays.toString(cache) +
+                ", ram=" + ram +
+                ", address=" + address +
+                ", size=" + size +
+                '}';
+    }
+}
+
+class WriteMemory extends Task {
+    private RAM ram;
+    private int address;
+
+    public WriteMemory(RAM ram, int address) {
+        this.ram = ram;
+        this.address = address;
+    }
+
+    @Override
+    public void execute() {
+        cache = getData();
+        ram.set(cache, address);
+    }
+
+    @Override
+    public String toString() {
+        return "WriteMemory{" +
+                "cache=" + Arrays.toString(cache) +
+                ", ram=" + ram +
+                ", address=" + address +
+                '}';
+    }
+}
+
+class ReadCard extends Task {
+    private Card card;
+    private int size;
+
+    public ReadCard (IEthernet ethernetCard, int size) {
+        this.card = new Card(ethernetCard);
+        this.size = size;
+    }
+
+    @Override
+    public void execute() {
+        cache = card.getCom(size);
+        setData(cache);
+    }
+
+    @Override
+    public String toString() {
+        return "ReadCard{" +
+                "cache=" + Arrays.toString(cache) +
+                ", card=" + card +
+                ", size=" + size +
+                '}';
+    }
+}
+
+class WriteCard extends Task {
+    private Card card;
+
+    public WriteCard(IEthernet ethernetCard) {
+        this.card = new Card(ethernetCard);
+    }
+
+    @Override
+    public void execute() {
+        cache = getData();
+        card.setCom(cache);
+    }
+
+    @Override
+    public String toString() {
+        return "WriteCard{" +
+                "cache=" + Arrays.toString(cache) +
+                ", card=" + card +
+                '}';
+    }
+}
