@@ -1,7 +1,12 @@
 import java.util.Arrays;
 import java.util.Random;
 
+/**This class contains utility methods.*/
 public class Utility {
+    private Utility() {
+
+    }
+
     public static Byte[] generateByteData() {
         Byte[] data = new Byte[4];
         byte[] bytes = new byte[4];

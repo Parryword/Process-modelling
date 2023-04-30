@@ -10,28 +10,44 @@
 // EthernetToTokenRingAdapter - adapter
 // Ethernet - target
 
-// COMPONENT PATTER
+// COMPONENT PATTERN
 // Command - component
 // Process - composite
 // Task(ReadCard/ReadMemory/WriteCard/WriteMemory) - leaf
 
-// TO DO
-// Factory - We can create a factory class to create CPU, RAM etc.
-// Singleton - We can make the factory class singleton.
-// Error codes
+// FACADE PATTERN
+// Computer
+
+// SINGLETON PATTERN
+// Logger
 public class Main {
     public static void main(String[] args) {
+        // Create random data
         Byte[] preGeneratedData = Utility.generateByteData(1000);
-        CPU cpu = new CPU();
+
+        // Create hardware
+        CPU cpu1 = new CPU("1");
+        CPU cpu2 = new CPU("2");
         RAM ram = new RAM();
         Ethernet et = new Ethernet(preGeneratedData);
         TokenRing tr = new TokenRing();
-        Command c1 = new ReadCard(new EthernetAdapter(et), 11);
-        Command c2 = new WriteMemory(ram,0);
-        Command c3 = new WriteCard(new TokenRingAdapter(tr));
-        Process p1 = new Process(c1, c2, c3);
-        cpu.addTask(p1);
-        cpu.start();
+        Computer cmp = new Computer(et, tr, ram, cpu1, cpu2);
 
+        // Create tasks
+        Command c1 = new ReadCard(cmp.getEthernet(), 4);
+        Command c2 = new WriteMemory(cmp.getRam(),0);
+        Command c3 = new WriteCard(cmp.getEthernet());
+        Command c4 = new ReadCard(cmp.getEthernet(), 4);
+        Command c5 = new WriteMemory(cmp.getRam(),0);
+        Command c6 = new WriteCard(cmp.getTokenRing());
+        Process p1 = new Process(c1, c2, c3);
+        Process p2 = new Process(c4, c5, c6);
+
+        // Add tasks
+        cmp.configureTasks(p1);
+        cmp.configureTasks(p2);
+
+        // Run the computer
+        cmp.runComputer();
     }
 }
