@@ -10,7 +10,7 @@
 // EthernetToTokenRingAdapter - adapter
 // Ethernet - target
 
-// COMPONENT PATTERN
+// COMPOSITE PATTERN
 // Command - component
 // Process - composite
 // Task(ReadCard/ReadMemory/WriteCard/WriteMemory) - leaf

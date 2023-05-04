@@ -35,7 +35,7 @@ class Process implements Command {
 
 /**Task class is a general abstraction of all tasks that is implemented. Its main function is to store last read data in a static format so that every task can access it.*/
 abstract class Task implements Command {
-    /**Contains the last data transferred. Only read methods update it.*/
+    /**Contains the last data transferred. Only read commands update it.*/
     static protected byte[] data;
     /**Cache is not strictly necessary; it is only used to log what data has been transferred by a task*/
     protected byte[] cache;
