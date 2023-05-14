@@ -20,13 +20,10 @@ public class Computer {
 
     // Both CPUs start to operate
     public void runComputer() {
-        boolean cp1Stop, cp2Stop;
-        while (true) {
+        boolean cp1Stop = true, cp2Stop = true;
+        while (cp1Stop && cp2Stop) {
             cp1Stop = cpu1.operation();
             cp2Stop = cpu2.operation();
-            if (cp1Stop == false && cp2Stop == false) {
-                break;
-            }
         }
     }
 
