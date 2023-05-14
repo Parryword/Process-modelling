@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Computer {
     public Computer(Ethernet ethernetCard, TokenRing tokenRingCard, RAM ram, CPU cpu1, CPU cpu2) {
         this.cpu1 = cpu1;
@@ -26,6 +28,31 @@ public class Computer {
                 break;
             }
         }
+    }
+
+    // Task creation methods
+    public ReadMemory readMemory(int address, int size) {
+        return new ReadMemory(ram, address, size);
+    }
+
+    public WriteMemory writeMemory(int address) {
+        return new WriteMemory(ram, address);
+    }
+
+    public ReadCard readEthernet(int size) {
+        return new ReadCard(ethernet, size);
+    }
+
+    public WriteCard writeEthernet() {
+        return new WriteCard(ethernet);
+    }
+
+    public ReadCard readTokenRing(int size) {
+        return new ReadCard(tokenRing, size);
+    }
+
+    public WriteCard writeTokenRing() {
+        return new WriteCard(tokenRing);
     }
 
     // Getters and Setters
@@ -68,4 +95,9 @@ public class Computer {
     public void setTokenRing(Card tokenRing) {
         this.tokenRing = tokenRing;
     }
+
+    enum TaskType {
+        READ_RAM, WRITE_RAM, READ_ETHERNET, WRITE_ETHERNET, READ_TOKEN_RING, WRITE_TOKEN_RING
+    }
 }
+

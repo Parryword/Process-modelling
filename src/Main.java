@@ -1,4 +1,3 @@
-// COMPLETED
 // COMMAND PATTERN
 // Program - client
 // CPU - invoker
@@ -15,11 +14,11 @@
 // Process - composite
 // Task(ReadCard/ReadMemory/WriteCard/WriteMemory) - leaf
 
-// TEMPLATE PATTERN
-// Cpu, AMD, Intel
-
 // FACADE PATTERN
 // Computer
+
+// TEMPLATE PATTERN
+// Cpu, AMD, Intel
 
 // SINGLETON PATTERN
 // Logger
@@ -37,18 +36,17 @@ public class Main {
         Computer cmp = new Computer(et, tr, ram, cpu1, cpu2);
 
         // Create tasks
-        Command c1 = new ReadCard(cmp.getEthernet(), 8);
-        Command c2 = new WriteMemory(cmp.getRam(),0);
-        Command c3 = new WriteCard(cmp.getEthernet());
-        Command c4 = new ReadCard(cmp.getEthernet(), 4);
-        Command c5 = new WriteMemory(cmp.getRam(),0);
-        Command c6 = new WriteCard(cmp.getTokenRing());
+        Command c1 = cmp.readEthernet(8);
+        Command c2 = cmp.writeMemory(0);
+        Command c3 = cmp.writeTokenRing();
+        Command c4 = cmp.readEthernet(4);
+        Command c5 = cmp.writeMemory(8);
+        Command c6 = cmp.writeTokenRing();
         Process p1 = new Process(c1, c2, c3);
         Process p2 = new Process(c4, c5, c6);
 
         // Add tasks
-        cmp.configureTasks(p1);
-        cmp.configureTasks(p2);
+        cmp.configureTasks(p1, p2);
 
         // Run the computer
         cmp.runComputer();
