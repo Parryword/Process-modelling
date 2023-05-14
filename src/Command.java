@@ -9,7 +9,7 @@ public interface Command {
 
 /**Process class stores a group of tasks, which it runs in order.*/
 class Process implements Command {
-    ArrayList<Command> commands;
+    private ArrayList<Command> commands;
 
     public Process(Command... command) {
         commands = new ArrayList<>();

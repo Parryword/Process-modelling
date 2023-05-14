@@ -22,7 +22,7 @@ public class Logger {
         LocalDateTime ldt = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String date = ldt.format(dtf);
-        writer.append(date + " CPU No: " + cpuID + " " + text+"\n");
+        writer.append(date + " CPU: " + cpuID + " " + text+"\n");
         writer.close();
     }
 }

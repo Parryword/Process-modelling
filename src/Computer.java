@@ -20,8 +20,8 @@ public class Computer {
     public void runComputer() {
         boolean cp1Stop, cp2Stop;
         while (true) {
-            cp1Stop = cpu1.run();
-            cp2Stop = cpu2.run();
+            cp1Stop = cpu1.operation();
+            cp2Stop = cpu2.operation();
             if (cp1Stop == false && cp2Stop == false) {
                 break;
             }
