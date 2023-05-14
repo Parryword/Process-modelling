@@ -21,7 +21,7 @@ public abstract class CPU {
     }
 
     /**Handles the main responsibility of the CPU. This is the place where tasks are executed. If there are no tasks left, it will return false, which will prompt computer to shut down.*/
-    public boolean operation() {
+    public final boolean operation() {
         hook();
         fetchTask();
         if (currentTask == null) {
@@ -69,18 +69,15 @@ public abstract class CPU {
 }
 
 class AMD extends CPU {
-
-
     @Override
     protected void hook() {
-        System.out.println("AMD CPU operates.");
+        System.out.println("AMD CPU operates...");
     }
 }
 
 class Intel extends CPU {
-
     @Override
     protected void hook() {
-        System.out.println("Intel CPU operates.");
+        System.out.println("Intel CPU operates...");
     }
 }
