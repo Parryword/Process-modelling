@@ -1,27 +1,7 @@
-// COMMAND PATTERN
-// Program - client
-// CPU - invoker
-// Task/Process - command
-// Ram - receiver
-
-// ADAPTER PATTERN
-// TokenRing - adaptee
-// EthernetToTokenRingAdapter - adapter
-// Ethernet - target
-
-// COMPOSITE PATTERN
-// Command - component
-// Process - composite
-// Task(ReadCard/ReadMemory/WriteCard/WriteMemory) - leaf
-
-// FACADE PATTERN
-// Computer
-
-// TEMPLATE PATTERN
-// Cpu, AMD, Intel
-
-// SINGLETON PATTERN
-// Logger
+/**Copyright © 2023 Yiğit Efe İren, all rights reserved.
+ * This program and its documentation are created by Yiğit Efe İren.
+ * Team members are Yiğit Efe İren, Can Selçuk, Halil Can Parlayan, and Bersay Yakıcı.
+ */
 public class Main {
     public static void main(String[] args) {
         // Create random data
