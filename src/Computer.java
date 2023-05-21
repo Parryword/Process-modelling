@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+/**Computer acts as a facade to run the system. It is possible to manually execute tasks without a computer object by creating CPU and other components separately.*/
 public class Computer {
     public Computer(Ethernet ethernetCard, TokenRing tokenRingCard, RAM ram, CPU cpu1, CPU cpu2) {
         this.cpu1 = cpu1;
@@ -20,11 +21,12 @@ public class Computer {
 
     // Both CPUs start to operate
     public void runComputer() {
-        boolean cp1Stop = true, cp2Stop = true;
-        while (cp1Stop && cp2Stop) {
-            cp1Stop = cpu1.operation();
-            cp2Stop = cpu2.operation();
+        boolean cp1Run = true, cp2Run = true;
+        while (cp1Run && cp2Run) {
+            cp1Run = cpu1.operation();
+            cp2Run = cpu2.operation();
         }
+        System.out.println("System is shutting down...");
     }
 
     // Task creation methods
@@ -93,6 +95,7 @@ public class Computer {
         this.tokenRing = tokenRing;
     }
 
+    // There are formally 4 task commands but this is a simplification for the user.
     enum TaskType {
         READ_RAM, WRITE_RAM, READ_ETHERNET, WRITE_ETHERNET, READ_TOKEN_RING, WRITE_TOKEN_RING
     }

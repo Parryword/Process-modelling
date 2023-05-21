@@ -38,7 +38,7 @@ public abstract class CPU {
     private void fetchTask() {
         currentTask = taskList.poll();
         if (currentTask == null) {
-            System.out.println("Fetch task failed.");
+            System.out.println("Fetch task failed. No tasks left.");
             return;
         }
         System.out.println("Task fetched.");
