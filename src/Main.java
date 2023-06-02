@@ -1,5 +1,4 @@
-/**Copyright © 2023 Yiğit Efe İren, all rights reserved.
- * This program and its documentation are created by Yiğit Efe İren.
+/**This program and its documentation are created by Yiğit Efe İren.
  * Team members are Yiğit Efe İren, Can Selçuk, Halil Can Parlayan, and Bersay Yakıcı.
  */
 public class Main {
