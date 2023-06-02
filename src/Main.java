@@ -1,5 +1,4 @@
-/**This program and its documentation are created by Yiğit Efe İren.
- * Team members are Yiğit Efe İren, Can Selçuk, Halil Can Parlayan, and Bersay Yakıcı.
+/**Team members are Yiğit Efe İren, Can Selçuk, Halil Can Parlayan, and Bersay Yakıcı.
  */
 public class Main {
     public static void main(String[] args) {
